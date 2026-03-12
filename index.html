@@ -3,129 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Games - Educational Login</title>
+    <title>Pak Games - Register</title>
     <style>
-        :root { --primary-red: #ff4d4d; --bg-dark: #f8f9fa; }
-        body { font-family: Arial, sans-serif; background-color: var(--bg-dark); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        :root { --main-red: #ff4d4d; --bg-gray: #f4f4f4; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-gray); margin: 0; display: flex; justify-content: center; }
         
-        /* Login/Register Styling */
-        .auth-container { width: 90%; max-width: 400px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: block; }
-        .auth-header { background: linear-gradient(to bottom, #ff7e7e, #ff4d4d); padding: 40px 20px; text-align: center; color: white; }
-        .auth-form { padding: 20px; }
-        .input-group { margin-bottom: 15px; position: relative; }
-        .input-group label { display: block; font-size: 14px; margin-bottom: 5px; color: #666; }
-        .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: #fdfdfd; }
-        .btn-register { width: 100%; padding: 15px; background: linear-gradient(to right, #ff7e7e, #ff4d4d); border: none; border-radius: 25px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        .app-container { width: 100%; max-width: 450px; background: white; min-height: 100vh; position: relative; }
         
-        /* Game Screen Styling */
-        #game-screen { display: none; width: 100%; max-width: 400px; text-align: center; background: #0d1117; color: white; min-height: 100vh; padding: 20px; box-sizing: border-box; }
-        .balance-card { background: #161b22; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #30363d; }
-        .btn-game { padding: 15px; width: 45%; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; }
-        .green { background: #22c55e; } .red { background: #ef4444; }
+        /* Header Style from Image */
+        .auth-header { 
+            background: linear-gradient(180deg, #ff7e7e 0%, #ff4d4d 100%); 
+            padding: 50px 20px; text-align: center; color: white;
+            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+        }
+        .logo { font-size: 32px; font-weight: bold; font-style: italic; letter-spacing: 2px; }
+        
+        .form-section { padding: 30px 25px; margin-top: -30px; }
+        .register-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        h3 { color: #333; margin-bottom: 5px; font-size: 18px; }
+        p.sub { color: #888; font-size: 13px; margin-bottom: 25px; }
+
+        .input-box { margin-bottom: 20px; }
+        .input-box label { display: block; font-size: 14px; color: #555; margin-bottom: 8px; font-weight: 500; }
+        
+        /* Phone Input with +92 */
+        .phone-wrapper { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 10px; background: #fafafa; overflow: hidden; }
+        .country-code { padding: 12px; background: #f0f0f0; border-right: 1px solid #ddd; font-weight: bold; color: #333; }
+        .phone-wrapper input { border: none; outline: none; padding: 12px; width: 100%; background: transparent; font-size: 15px; }
+
+        .standard-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa; box-sizing: border-box; outline: none; }
+
+        .btn-register { 
+            width: 100%; padding: 14px; background: linear-gradient(to right, #ff7b7b, #ff4d4d); 
+            border: none; border-radius: 30px; color: white; font-weight: bold; font-size: 17px; 
+            cursor: pointer; margin-top: 20px; box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
+        }
+
+        /* Game Screen Hidden by Default */
+        #game-screen { display: none; padding: 20px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div id="auth-screen" class="auth-container">
+<div class="app-container">
+    <div id="auth-screen">
         <div class="auth-header">
-            <h2>PAK Games</h2>
-            <p>Register by phone number</p>
+            <div class="logo">PAK GAMES</div>
         </div>
-        <div class="auth-form">
-            <div class="input-group">
-                <label>Phone number</label>
-                <input type="text" id="regPhone" placeholder="Please enter the phone number">
+
+        <div class="form-section">
+            <div class="register-card">
+                <h3>Register</h3>
+                <p class="sub">Please register by phone number</p>
+
+                <div class="input-box">
+                    <label>Phone number</label>
+                    <div class="phone-wrapper">
+                        <span class="country-code">+92</span>
+                        <input type="number" id="phone" placeholder="Enter phone number">
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label>Set password</label>
+                    <input type="password" id="pass" class="standard-input" placeholder="Set password">
+                </div>
+
+                <div class="input-box">
+                    <label>Confirm password</label>
+                    <input type="password" id="cpass" class="standard-input" placeholder="Confirm password">
+                </div>
+
+                <div class="input-box">
+                    <label>Invite code</label>
+                    <input type="text" value="84128120386" class="standard-input" readonly style="color:#999;">
+                </div>
+
+                <button class="btn-register" onclick="validateRegistration()">Register</button>
             </div>
-            <div class="input-group">
-                <label>Set password</label>
-                <input type="password" id="regPass" placeholder="Set password">
-            </div>
-            <div class="input-group">
-                <label>Confirm password</label>
-                <input type="password" id="confirmPass" placeholder="Confirm password">
-            </div>
-            <div class="input-group">
-                <label>Invite code</label>
-                <input type="text" value="84128120386" readonly style="background: #eee;">
-            </div>
-            <button class="btn-register" onclick="handleRegister()">Register</button>
         </div>
     </div>
 
     <div id="game-screen">
-        <h2>PAK GAMES</h2>
-        <div class="balance-card">
-            <p>Welcome, <span id="userDisplay"></span></p>
-            <h3>Demo Balance: <span id="balance">PKR 5,000</span></h3>
+        <h2 style="color: var(--main-red);">Welcome to Game</h2>
+        <p>Your Phone: <span id="userPh"></span></p>
+        <div style="background: #eee; padding: 40px; border-radius: 20px;">
+            <h3>Balance: PKR 5,000</h3>
+            <p>(Game Logic Loaded Successfully)</p>
         </div>
-        <div style="background: #21262d; padding: 20px; border-radius: 15px;">
-            <p>Wingo Color Prediction</p>
-            <input type="number" id="betAmount" value="100" style="width: 80%; padding: 10px; margin-bottom: 10px;">
-            <div style="display: flex; justify-content: space-around;">
-                <button class="btn-game green" onclick="play('Green')">Green</button>
-                <button class="btn-game red" onclick="play('Red')">Red</button>
-            </div>
-            <p id="resultText" style="margin-top: 20px;"></p>
-        </div>
-        <button onclick="logout()" style="margin-top: 20px; background: none; color: gray; border: none; cursor: pointer;">Logout</button>
+        <button onclick="location.reload()" style="margin-top: 20px;">Logout</button>
     </div>
+</div>
 
-    <script>
-        let currentBalance = 5000;
+<script>
+    function validateRegistration() {
+        const phone = document.getElementById('phone').value;
+        const pass = document.getElementById('pass').value;
+        const cpass = document.getElementById('cpass').value;
 
-        // Register Function
-        function handleRegister() {
-            const phone = document.getElementById('regPhone').value;
-            const pass = document.getElementById('regPass').value;
-            const confirm = document.getElementById('confirmPass').value;
-
-            if(!phone || !pass) { alert("Please fill all fields"); return; }
-            if(pass !== confirm) { alert("Passwords do not match!"); return; }
-
-            // Storing in Browser Memory
-            localStorage.setItem('user_phone', phone);
-            localStorage.setItem('user_pass', pass);
-            
-            alert("Registration Successful!");
-            showGame(phone);
+        // Basic Pakistan Number Check (e.g. 3001234567 - 10 digits)
+        if(phone.length < 10) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
         }
 
-        function showGame(phone) {
-            document.getElementById('auth-screen').style.display = 'none';
-            document.getElementById('game-screen').style.display = 'block';
-            document.getElementById('userDisplay').innerText = phone;
+        if(pass === "" || cpass === "") {
+            alert("Please set your password.");
+            return;
         }
 
-        function play(choice) {
-            const bet = parseInt(document.getElementById('betAmount').value);
-            if(bet > currentBalance) { alert("Not enough balance!"); return; }
-
-            const winColor = Math.random() > 0.5 ? 'Green' : 'Red';
-            currentBalance -= bet;
-
-            if(choice === winColor) {
-                currentBalance += (bet * 2);
-                document.getElementById('resultText').innerText = "WIN! Result: " + winColor;
-                document.getElementById('resultText').style.color = "#22c55e";
-            } else {
-                document.getElementById('resultText').innerText = "LOSE! Result: " + winColor;
-                document.getElementById('resultText').style.color = "#ef4444";
-            }
-            document.getElementById('balance').innerText = "PKR " + currentBalance;
+        if(pass !== cpass) {
+            alert("Passwords do not match!");
+            return;
         }
 
-        function logout() {
-            location.reload(); // Refresh to go back to login
-        }
+        // Save data locally
+        localStorage.setItem('pak_user', phone);
+        
+        // Show Success and Switch Screen
+        alert("Registration Successful!");
+        document.getElementById('auth-screen').style.display = 'none';
+        document.getElementById('game-screen').style.display = 'block';
+        document.getElementById('userPh').innerText = "+92 " + phone;
+    }
+</script>
 
-        // Check if already logged in on load
-        window.onload = () => {
-            const savedUser = localStorage.getItem('user_phone');
-            if(savedUser) {
-                // Agar aap chahte hain ke page load hote hi login ho jaye to isay uncomment karen
-                // showGame(savedUser); 
-            }
-        }
-    </script>
 </body>
 </html>
